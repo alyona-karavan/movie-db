@@ -4,7 +4,7 @@ body {
   background-color: #f7f7f7;
   font-family: 'Inter', normal;
 
-  .root {
+  #root {
     display: flex;
     background-color: #fff;
     width: 1010px;
@@ -80,7 +80,7 @@ body {
   body {
     background-color: #fff;
 
-    .root {
+    #root {
       padding: 0 16px;
 
       .movies {
