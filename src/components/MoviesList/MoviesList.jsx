@@ -2,36 +2,39 @@ import { Component } from 'react'
 
 import MovieCard from '../MovieCard'
 import './MoviesList.css'
+import SwapiService from '../services/swapiService'
 
 export default class MoviesList extends Component {
-  state = {}
+  constructor(props) {
+    super(props)
+    this.state = {
+      movies: [],
+    }
+    this.SwapiService = new SwapiService()
+    this.getMovies()
+  }
+
+  getMovies() {
+    this.SwapiService.getMovies('return').then((films) => {
+      this.setState({ movies: films })
+    })
+  }
 
   render() {
-    const { films } = this.props
-    const movies = films.map((film) => {
-      return <MovieCard {...film} key={film.id} id={film.id} />
-    })
-
-    return <ul className="movies">{movies}</ul>
+    return (
+      <ul className="movies">
+        {this.state.movies.map((film) => (
+          <MovieCard
+            title={film.title}
+            key={film.id}
+            id={film.id}
+            date={film.release_date}
+            description={film.overview}
+            poster={film.poster_path}
+            genre={film.genre_ids}
+          />
+        ))}
+      </ul>
+    )
   }
 }
-
-// const elements = data.map((item) => {
-//     return (
-//       <Task
-//         {...item}
-//         key={item.id}
-//         id={item.id}
-//         onDelete={() => {
-//           onDelete(item.id)
-//         }}
-//         onDone={() => {
-//           onDone(item.id)
-//         }}
-//         onEdit={onEdit}
-//         addItem={() => addItem(item.id)}
-//       />
-//     )
-//   })
-
-//   return <ul className="todo-list">{elements}</ul>
