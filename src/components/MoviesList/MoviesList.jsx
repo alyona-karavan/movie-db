@@ -9,6 +9,7 @@ export default class MoviesList extends Component {
     super(props)
     this.state = {
       movies: [],
+      loading: true,
     }
     this.SwapiService = new SwapiService()
     this.getMovies()
@@ -25,6 +26,7 @@ export default class MoviesList extends Component {
       <ul className="movies">
         {this.state.movies.map((film) => (
           <MovieCard
+            loading={this.state.loading}
             title={film.title}
             key={film.id}
             id={film.id}
