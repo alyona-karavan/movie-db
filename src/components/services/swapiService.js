@@ -10,18 +10,26 @@ const BASE_URL = 'https://api.themoviedb.org/3'
 const searchURL = BASE_URL + '/search/movie?'
 
 export default class SwapiService {
-  async getResourse(url) {
-    const res = await fetch(url, options)
+  getResourse = async (url) => {
+    try {
+      const res = await fetch(url, options)
+      if (!res.ok) {
+        throw new Error(`Could not fetch ${url}, recieved: ${res.status}`)
+      }
 
-    if (!res.ok) {
-      throw new Error(`Could not fetch ${url}, recieved: ${res.status}`)
+      return await res.json()
+    } catch (error) {
+      console.error(error)
+      throw error
     }
-
-    return await res.json()
   }
 
-  async getMovies(search) {
-    const res = await this.getResourse(searchURL + 'query=' + search)
-    return res.results
+  getMovies = async (search, page) => {
+    const res = await this.getResourse(`${searchURL}query=${search}&page=${page}`)
+    console.log(res)
+    return {
+      results: res.results,
+      total_pages: res.total_pages,
+    }
   }
 }

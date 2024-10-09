@@ -1,11 +1,38 @@
-.movies {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 36px;
+.moviesContainer {
+  padding: 0 36px;
+  width: 100%;
 
   @media (max-width: 420px) {
-    flex-wrap: nowrap;
-    flex-direction: column;
-    margin: 0 auto;
+    padding: 0;
+  }
+
+  .movies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 36px;
+    width: 100%;
+
+    @media (max-width: 420px) {
+      flex-wrap: nowrap;
+      flex-direction: column;
+      margin: 0 auto;
+    }
+  }
+}
+.no-movies-found {
+  font-size: 18px;
+  color: #666;
+  text-align: center;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+.containerForDetails:not(:empty) {
+  height: 100%;
+  width: 100%;
+  padding: 0 36px;
+  @media (max-width: 420px) {
+    padding: 0;
   }
 }

@@ -8,10 +8,14 @@
   height: 280px;
   box-shadow: 5px 5px 15px #d9d9d9;
 
+  @media (max-width: 1010px) {
+    width: 100%;
+  }
+
   @media (max-width: 420px) {
     padding: 10px;
-    width: 100vh;
-    height: 245px;
+    min-width: 388px;
+    height: 250px;
     grid-template-columns: 60px 1fr;
     grid-template-rows: 90px 90px 1fr;
     grid-column-gap: 13px;

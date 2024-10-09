@@ -6,11 +6,15 @@ body {
 
   #root {
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
     background-color: #fff;
-    width: 1010px;
-    height: auto;
-    margin: 0 auto;
-    padding: 25px 35px;
+    max-width: 1010px;
+
+    height: 100vh;
+    margin: 25px auto;
+    box-sizing: border-box;
   }
 }
 
@@ -20,7 +24,7 @@ body {
 
     #root {
       width: auto;
-      padding: 0 16px;
+      margin: 20px 16px;
     }
   }
 }

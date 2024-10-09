@@ -1,5 +1,4 @@
 import { Component, Fragment } from 'react'
-import { Spin } from 'antd'
 import { format } from 'date-fns/format'
 import { enGB } from 'date-fns/locale'
 
@@ -7,13 +6,9 @@ import './MovieCard.css'
 
 export default class MovieCard extends Component {
   render() {
-    console.log(this.props.loading)
-    const spiner = this.props.loading ? <Spin /> : null
-    const content = !this.props.loading ? <Card film={this.props} /> : null
     return (
       <li className="card">
-        {spiner}
-        {content}
+        <Card film={this.props} />
       </li>
     )
   }
@@ -54,7 +49,7 @@ const Card = ({ film }) => {
           <p>{genre}</p>
         </div>
       </div>
-      <p className="description">{shortenDescription(description, 250)}</p>
+      <p className="description">{shortenDescription(description, 150)}</p>
     </Fragment>
   )
 }
