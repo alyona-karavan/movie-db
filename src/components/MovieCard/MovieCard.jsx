@@ -2,13 +2,24 @@ import { Component, Fragment } from 'react'
 import { format } from 'date-fns/format'
 import { enGB } from 'date-fns/locale'
 
+import MyRate from '../MyRate'
+
 import './MovieCard.css'
 
 export default class MovieCard extends Component {
+  state = {
+    id: this.props.id,
+    rating: 0,
+  }
+
+  handleRate = (newRating) => {
+    this.setState({ rating: newRating })
+  }
+
   render() {
     return (
       <li className="card">
-        <Card film={this.props} />
+        <Card film={this.props} rating={this.state.rating} handleRate={this.handleRate} />
       </li>
     )
   }
@@ -36,13 +47,13 @@ function shortenDescription(description, maxLength) {
   return shortenedDescription.trim()
 }
 
-const Card = ({ film }) => {
+const Card = ({ film, handleRate, rating }) => {
   const { poster, title, date, genre, description } = film
   return (
     <Fragment>
       <img className="image" src={`https://image.tmdb.org/t/p/w500${poster}`} />
       <div className="aboutFilm">
-        <h2 className="title">{title}</h2>
+        <h2 className="title">{shortenDescription(title, 20)}</h2>
         <p className="date">{date ? format(new Date(date), 'LLLL d, yyyy', { locale: enGB }) : ''}</p>
         <div className="genre">
           <p>{genre}</p>
@@ -50,6 +61,7 @@ const Card = ({ film }) => {
         </div>
       </div>
       <p className="description">{shortenDescription(description, 150)}</p>
+      <MyRate handleRate={handleRate} rating={rating} />
     </Fragment>
   )
 }

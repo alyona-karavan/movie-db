@@ -7,7 +7,7 @@ const Error = () => {
   }
   return (
     <div style={contentStyle}>
-      <Alert message="Error" description="This is an error message about copywriting." type="error" showIcon />
+      <Alert message="Error" description="Failed to fetch." type="error" showIcon />
     </div>
   )
 }

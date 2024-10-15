@@ -12,9 +12,9 @@ body {
     background-color: #fff;
     max-width: 1010px;
 
-    height: 100vh;
     margin: 25px auto;
     box-sizing: border-box;
+    padding-bottom: 15px;
   }
 }
 

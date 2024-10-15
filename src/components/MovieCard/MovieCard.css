@@ -10,6 +10,7 @@
 
   @media (max-width: 1010px) {
     width: 100%;
+    min-width: 450px;
   }
 
   @media (max-width: 420px) {

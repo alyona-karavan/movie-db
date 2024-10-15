@@ -76,6 +76,7 @@ export default class MoviesList extends Component {
     const renderMovieCard = (film) => (
       <MovieCard
         key={film.id}
+        id={film.id}
         title={film.title}
         date={film.release_date}
         description={film.overview}

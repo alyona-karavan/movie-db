@@ -26,7 +26,6 @@ export default class SwapiService {
 
   getMovies = async (search, page) => {
     const res = await this.getResourse(`${searchURL}query=${search}&page=${page}`)
-    console.log(res)
     return {
       results: res.results,
       total_pages: res.total_pages,
