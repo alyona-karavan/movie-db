@@ -6,6 +6,6 @@ export default class MyRate extends Component {
   }
 
   render() {
-    return <Rate onChange={this.handleChange} value={this.props.rating} />
+    return <Rate onChange={this.handleChange} value={this.props.rating} count={10} allowHalf />
   }
 }

@@ -1,16 +1,39 @@
 import { Component } from 'react'
 
+import ErrorBoundry from '../ErrorBoudry'
+import Tabs from '../Tabs'
 import MoviesList from '../MoviesList'
 import './App.css'
-import ErrorBoundry from '../ErrorBoudry'
+import RatedList from '../RatedList'
+import SwapiService from '../services/swapiService'
+import { Provider } from '../Context'
 
 export default class App extends Component {
+  swapiService = new SwapiService()
+
   state = {
-    movieList: true,
+    allGenres: [],
+  }
+
+  componentDidMount() {
+    this.swapiService
+      .getGenres()
+      .then((genres) => {
+        this.setState({ allGenres: genres })
+      })
+      .catch((err) => console.error(err))
   }
 
   render() {
-    const movieList = this.state.movieList ? <MoviesList /> : null
-    return <ErrorBoundry>{movieList}</ErrorBoundry>
+    // console.log(`all: ${this.state.allGenres}`)
+    return (
+      <ErrorBoundry>
+        <Provider value={this.state.allGenres}>
+          <Tabs />
+          <MoviesList />
+          <RatedList />
+        </Provider>
+      </ErrorBoundry>
+    )
   }
 }

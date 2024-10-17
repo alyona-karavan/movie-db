@@ -23,12 +23,17 @@ export default class MoviesList extends Component {
       pageSize: 20,
       search: '',
     }
-    console.log(debounce)
     this.handleSearchDebounced = debounce(this.getMovies.bind(this), 500)
   }
 
   componentDidMount() {
     this.getMovies(this.state.search, 1)
+  }
+
+  componentDidCatch() {
+    this.setState({
+      error: true,
+    })
   }
 
   onError = () => {
@@ -94,9 +99,6 @@ export default class MoviesList extends Component {
     const content = hasData ? movies.map(renderMovieCard) : null
     const noMovies =
       search !== '' && movies.length === 0 && hasData ? <div className="no-movies-found">No movies found.</div> : null
-    console.log(`1: ${this.state.search}`)
-    console.log(`2: ${this.state.movies.length}`)
-    console.log(`3: ${hasData}`)
     const pagination =
       movies.length > 0 ? (
         <ListPagination currentPage={currentPage} totalPages={totalPages} onChange={this.handlePageChange} />

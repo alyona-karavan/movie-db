@@ -1,8 +1,9 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 
 import Error from '../Error'
+import './RatedList.css'
 
-export default class ErrorBoundry extends Component {
+export default class RatedList extends Component {
   state = {
     error: false,
   }
@@ -17,7 +18,6 @@ export default class ErrorBoundry extends Component {
     if (this.state.error) {
       return <Error />
     }
-
-    return this.props.children
+    return <div></div>
   }
 }
