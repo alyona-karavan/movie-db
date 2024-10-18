@@ -54,7 +54,8 @@ const Card = ({ film, handleRate, rating }) => {
   console.log(film)
   return (
     <Consumer>
-      {(allGenres) => {
+      {(state) => {
+        const allGenres = state.allGenres
         const genreNames = genre.map((genreId) => {
           const genreObject = allGenres.find((g) => g.id === genreId)
           return genreObject ? genreObject.name : null

@@ -13,6 +13,7 @@ export default class App extends Component {
 
   state = {
     allGenres: [],
+    guestSessionId: '',
   }
 
   componentDidMount() {
@@ -22,13 +23,19 @@ export default class App extends Component {
         this.setState({ allGenres: genres })
       })
       .catch((err) => console.error(err))
+
+    this.swapiService
+      .createGuestSession()
+      .then((res) => {
+        this.setState({ guestSessionId: res.guest_session_id })
+      })
+      .catch((err) => console.error(err))
   }
 
   render() {
-    // console.log(`all: ${this.state.allGenres}`)
     return (
       <ErrorBoundry>
-        <Provider value={this.state.allGenres}>
+        <Provider value={this.state}>
           <Tabs />
           <MoviesList />
           <RatedList />
