@@ -4,6 +4,7 @@ import { enGB } from 'date-fns/locale'
 
 import { Consumer } from '../Context'
 import MyRate from '../MyRate'
+import MovieRating from '../MovieRating'
 
 import './MovieCard.css'
 
@@ -49,8 +50,8 @@ function shortenDescription(description, maxLength) {
 }
 
 const Card = ({ film, handleRate, rating }) => {
-  const { poster, title, date, genre, description } = film
-
+  const { poster, title, date, genre, description, score } = film
+  console.log(film)
   return (
     <Consumer>
       {(allGenres) => {
@@ -63,6 +64,7 @@ const Card = ({ film, handleRate, rating }) => {
           <Fragment>
             <img className="image" src={`https://image.tmdb.org/t/p/w500${poster}`} />
             <div className="aboutFilm">
+              <MovieRating score={score} />
               <h2 className="title">{shortenDescription(title, 18)}</h2>
               <p className="date">{date ? format(new Date(date), 'LLLL d, yyyy', { locale: enGB }) : ''}</p>
               <div className="genre">

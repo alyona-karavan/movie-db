@@ -44,7 +44,7 @@ export default class SwapiService {
   getGenres = async () => {
     const response = await fetch('https://api.themoviedb.org/3/genre/movie/list?language=en', options)
     const res = await response.json()
-    console.log(res.genres)
+    // console.log(res.genres)
     return res.genres
   }
 }

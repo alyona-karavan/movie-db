@@ -47,6 +47,7 @@ export default class MoviesList extends Component {
     this.swapiService
       .getMovies(search, page)
       .then((films) => {
+        console.log(films)
         this.setState({
           movies: films.results,
           totalPages: films.total_pages,
@@ -87,6 +88,7 @@ export default class MoviesList extends Component {
         description={film.overview}
         poster={film.poster_path}
         genre={film.genre_ids}
+        score={film.vote_average}
       />
     )
 
