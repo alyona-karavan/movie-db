@@ -50,7 +50,7 @@ function shortenDescription(description, maxLength) {
 }
 
 const Card = ({ film, handleRate, rating }) => {
-  const { poster, title, date, genre, description, score } = film
+  const { poster, title, date, genre, description, score, id } = film
   console.log(film)
   return (
     <Consumer>
@@ -75,7 +75,7 @@ const Card = ({ film, handleRate, rating }) => {
               </div>
             </div>
             <p className="description">{shortenDescription(description, 130)}</p>
-            <MyRate handleRate={handleRate} rating={rating} />
+            <MyRate handleRate={handleRate} rating={rating} id={id} />
           </Fragment>
         )
       }}

@@ -2,13 +2,13 @@ const options = {
   method: 'GET',
   headers: {
     accept: 'application/json',
-    Authorization: 'Bearer 5ca5d7573460605592288db128a9b886',
+    Authorization: 'Bearer d460282b6c4c640a98e65967fe37cd43',
   },
 }
 
 const baseURL = 'https://api.themoviedb.org/3'
 const searchURL = baseURL + '/search/movie?'
-const API_KEY = '5ca5d7573460605592288db128a9b886'
+const API_KEY = 'd460282b6c4c640a98e65967fe37cd43'
 
 export default class SwapiService {
   getResourse = async (url) => {
@@ -77,14 +77,13 @@ export default class SwapiService {
     }
   }
 
-  addRating = async (movieId, guestSessionId, rating) => {
+  addRating = async (guestSessionId, movieId, rating) => {
     try {
       const response = await fetch(
-        `https://api.themoviedb.org/3/movie/${movieId}/rating?guest_session_id=${guestSessionId}`,
+        `https://api.themoviedb.org/3/movie/${movieId}/rating?api_key=${API_KEY}&guest_session_id=${guestSessionId}`,
         {
           method: 'POST',
           headers: {
-            Authorization: 'Bearer 5ca5d7573460605592288db128a9b886',
             'Content-Type': 'application/json;charset=utf-8',
           },
           body: JSON.stringify({ value: rating }),
