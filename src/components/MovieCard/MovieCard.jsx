@@ -2,7 +2,7 @@ import { Component, Fragment } from 'react'
 import { format } from 'date-fns/format'
 import { enGB } from 'date-fns/locale'
 
-import { Consumer } from '../Context'
+import { Consumer } from '../../services/Context'
 import MyRate from '../MyRate'
 import MovieRating from '../MovieRating'
 
@@ -62,8 +62,15 @@ const Card = ({ film, handleRate }) => {
         })
 
         return (
-          <Fragment>
-            <img className="image" src={`https://image.tmdb.org/t/p/w500${poster}`} />
+          <>
+            <img
+              className="image"
+              src={
+                poster
+                  ? `https://image.tmdb.org/t/p/w500${poster}`
+                  : '/assets/images/1fea04e2-9ad7-475d-990d-02d16d351efd.png'
+              }
+            />
             <div className="aboutFilm">
               <MovieRating score={score} />
               <h2 className="title">{shortenDescription(title, 18)}</h2>
@@ -76,7 +83,7 @@ const Card = ({ film, handleRate }) => {
             </div>
             <p className="description">{shortenDescription(description, 130)}</p>
             <MyRate handleRate={handleRate} rating={rating || 0} id={id} />
-          </Fragment>
+          </>
         )
       }}
     </Consumer>

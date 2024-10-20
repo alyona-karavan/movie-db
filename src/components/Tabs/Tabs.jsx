@@ -1,6 +1,6 @@
 import { Component } from 'react'
 
-import { Consumer } from '../Context'
+import { Consumer } from '../../services/Context'
 import './Tabs.css'
 
 export default class Tabs extends Component {

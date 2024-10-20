@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Rate } from 'antd'
 
-import { Consumer } from '../Context'
-import SwapiService from '../services/swapiService'
+import { Consumer } from '../../services/Context'
+import SwapiService from '../../services/swapiService'
 export default class MyRate extends Component {
   swapiService = new SwapiService()
 

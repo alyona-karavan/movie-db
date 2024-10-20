@@ -3,10 +3,9 @@ import React, { Component } from 'react'
 import ErrorBoundry from '../ErrorBoudry'
 import Tabs from '../Tabs'
 import MoviesList from '../MoviesList'
-import './App.css'
 import RatedList from '../RatedList'
-import SwapiService from '../services/swapiService'
-import { Provider } from '../Context'
+import SwapiService from '../../services/swapiService'
+import { Provider } from '../../services/Context'
 
 export default class App extends Component {
   swapiService = new SwapiService()
