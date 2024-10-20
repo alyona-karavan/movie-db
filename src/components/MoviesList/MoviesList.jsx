@@ -89,6 +89,7 @@ export default class MoviesList extends Component {
         poster={film.poster_path}
         genre={film.genre_ids}
         score={film.vote_average}
+        rating={film.rating}
       />
     )
 
@@ -97,7 +98,7 @@ export default class MoviesList extends Component {
     const searchBar = <SearchBar onSearch={this.handleSearch} />
 
     const errorMessage = error ? <Error /> : null
-    const spinner = loading ? Spinner('List of movies is loading', 'wait') : null
+    const spinner = loading ? Spinner() : null
     const content = hasData ? movies.map(renderMovieCard) : null
     const noMovies =
       search !== '' && movies.length === 0 && hasData ? <div className="no-movies-found">No movies found.</div> : null

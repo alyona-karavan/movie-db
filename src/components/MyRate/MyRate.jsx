@@ -7,7 +7,7 @@ export default class MyRate extends Component {
   swapiService = new SwapiService()
 
   state = {
-    rating: 0,
+    rating: this.props.rating,
     movieId: this.props.id,
   }
 

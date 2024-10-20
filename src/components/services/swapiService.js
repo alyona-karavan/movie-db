@@ -69,8 +69,11 @@ export default class SwapiService {
         }
       }
 
-      const data = await response.json()
-      return data
+      const res = await response.json()
+      return {
+        results: res.results,
+        total_pages: res.total_pages,
+      }
     } catch (error) {
       console.error('Ошибка при получении оцененных фильмов:', error.message)
       throw error

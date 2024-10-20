@@ -11,7 +11,7 @@ import './MovieCard.css'
 export default class MovieCard extends Component {
   state = {
     id: this.props.id,
-    rating: 0,
+    // rating: 0,
   }
 
   handleRate = (newRating) => {
@@ -21,7 +21,7 @@ export default class MovieCard extends Component {
   render() {
     return (
       <li className="card">
-        <Card film={this.props} rating={this.state.rating} handleRate={this.handleRate} />
+        <Card film={this.props} handleRate={this.handleRate} />
       </li>
     )
   }
@@ -49,9 +49,9 @@ function shortenDescription(description, maxLength) {
   return shortenedDescription.trim()
 }
 
-const Card = ({ film, handleRate, rating }) => {
-  const { poster, title, date, genre, description, score, id } = film
-  console.log(film)
+const Card = ({ film, handleRate }) => {
+  const { poster, title, date, genre, description, score, id, rating } = film
+
   return (
     <Consumer>
       {(state) => {
@@ -75,7 +75,7 @@ const Card = ({ film, handleRate, rating }) => {
               </div>
             </div>
             <p className="description">{shortenDescription(description, 130)}</p>
-            <MyRate handleRate={handleRate} rating={rating} id={id} />
+            <MyRate handleRate={handleRate} rating={rating || 0} id={id} />
           </Fragment>
         )
       }}

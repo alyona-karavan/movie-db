@@ -4,7 +4,7 @@ import ErrorBoundry from '../ErrorBoudry'
 import Tabs from '../Tabs'
 import MoviesList from '../MoviesList'
 import './App.css'
-// import RatedList from '../RatedList'
+import RatedList from '../RatedList'
 import SwapiService from '../services/swapiService'
 import { Provider } from '../Context'
 
@@ -14,6 +14,7 @@ export default class App extends Component {
   state = {
     allGenres: [],
     guestSessionId: '',
+    searchPageActive: true,
   }
 
   componentDidMount() {
@@ -32,15 +33,21 @@ export default class App extends Component {
       .catch((err) => console.error(err))
   }
 
+  togglePage = () => {
+    this.setState((prevState) => ({ searchPageActive: !prevState.searchPageActive }))
+  }
+
   render() {
-    console.log(`state.allGenres: ${this.state.allGenres}`)
-    console.log(`guestSessionId: ${this.state.guestSessionId}`)
+    const value = {
+      ...this.state,
+      togglePage: this.togglePage,
+    }
+
     return (
       <ErrorBoundry>
-        <Provider value={this.state}>
+        <Provider value={value}>
           <Tabs />
-          <MoviesList />
-          {/* <RatedList /> */}
+          {this.state.searchPageActive ? <MoviesList /> : <RatedList />}
         </Provider>
       </ErrorBoundry>
     )
