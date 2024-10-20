@@ -2,7 +2,7 @@
   width: 100%;
   padding: 20px 36px 0 36px;
   @media (max-width: 420px) {
-    padding: 0;
+    padding: 20px 0 10px 0;
   }
   .search {
     height: 40px;
