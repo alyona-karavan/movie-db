@@ -65,11 +65,12 @@ const Card = ({ film, handleRate }) => {
           <>
             <img
               className="image"
-              src={
-                poster
-                  ? `https://image.tmdb.org/t/p/w500${poster}`
-                  : '/assets/images/1fea04e2-9ad7-475d-990d-02d16d351efd.png'
-              }
+              src={poster ? `https://image.tmdb.org/t/p/w500${poster}` : '/assets/images/no.png'}
+              style={{
+                objectFit: 'cover',
+                width: '100%',
+                height: '100%',
+              }}
             />
             <div className="aboutFilm">
               <MovieRating score={score} />

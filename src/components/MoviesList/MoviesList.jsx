@@ -8,8 +8,11 @@ import SwapiService from '../../services/swapiService'
 import Spinner from '../Spinner/Spinner'
 import Error from '../Error'
 import ListPagination from '../ListPagination'
+import Context from '../../services/Context'
 
 export default class MoviesList extends Component {
+  static contextType = Context
+
   swapiService = new SwapiService()
 
   constructor(props) {
@@ -21,13 +24,13 @@ export default class MoviesList extends Component {
       totalPages: 0,
       currentPage: 1,
       pageSize: 20,
-      search: '',
     }
     this.handleSearchDebounced = debounce(this.getMovies.bind(this), 500)
   }
 
   componentDidMount() {
-    this.getMovies(this.state.search, 1)
+    const { search } = this.context
+    this.getMovies(search, 1)
   }
 
   componentDidCatch() {
@@ -47,14 +50,12 @@ export default class MoviesList extends Component {
     this.swapiService
       .getMovies(search, page)
       .then((films) => {
-        console.log(films)
         this.setState({
           movies: films.results,
           totalPages: films.total_pages,
           error: false,
           loading: false,
           currentPage: page,
-          search: search,
         })
       })
       .catch((error) => {
@@ -66,18 +67,21 @@ export default class MoviesList extends Component {
     this.setState({
       loading: true,
     })
-    this.getMovies(this.state.search, page)
+    const { search } = this.context
+    this.getMovies(search, page)
   }
 
   handleSearch = (searchTerm) => {
     this.setState({
       loading: true,
     })
+    this.context.setSearch(searchTerm)
     this.handleSearchDebounced(searchTerm)
   }
 
   render() {
-    const { movies, loading, error, currentPage, totalPages, search } = this.state
+    const { movies, loading, error, currentPage, totalPages } = this.state
+    const { search } = this.context
 
     const renderMovieCard = (film) => (
       <MovieCard

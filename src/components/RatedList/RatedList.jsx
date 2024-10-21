@@ -44,8 +44,7 @@ export default class RatedList extends Component {
     }
   }
 
-  getRatedMovies = () => {
-    const { guestSessionId } = this.state
+  getRatedMovies = (guestSessionId = this.state.guestSessionId, page = this.state.currentPage) => {
     if (!guestSessionId) {
       this.setState({ loading: false })
       return
@@ -53,12 +52,14 @@ export default class RatedList extends Component {
 
     this.setState({ loading: true })
     this.swapiService
-      .getRatedMovies(guestSessionId)
+      .getRatedMovies(guestSessionId, page)
       .then((movies) => {
         this.setState({
           movies: movies.results || [],
           totalPages: movies.total_pages,
+          error: false,
           loading: false,
+          currentPage: page,
         })
       })
       .catch((err) => {

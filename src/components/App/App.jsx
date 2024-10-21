@@ -14,6 +14,7 @@ export default class App extends Component {
     allGenres: [],
     guestSessionId: '',
     searchPageActive: true,
+    search: '',
   }
 
   componentDidMount() {
@@ -36,10 +37,15 @@ export default class App extends Component {
     this.setState((prevState) => ({ searchPageActive: !prevState.searchPageActive }))
   }
 
+  setSearch = (newSearch) => {
+    this.setState({ search: newSearch })
+  }
+
   render() {
     const value = {
       ...this.state,
       togglePage: this.togglePage,
+      setSearch: this.setSearch,
     }
 
     return (

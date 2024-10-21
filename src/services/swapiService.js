@@ -56,8 +56,8 @@ export default class SwapiService {
     }
   }
 
-  getRatedMovies = async (guestSessionId) => {
-    const url = `https://api.themoviedb.org/3/guest_session/${guestSessionId}/rated/movies?api_key=${API_KEY}`
+  getRatedMovies = async (guestSessionId, page) => {
+    const url = `https://api.themoviedb.org/3/guest_session/${guestSessionId}/rated/movies?api_key=${API_KEY}&page=${page}`
 
     try {
       const response = await fetch(url)
